@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl" id="main-html">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DARR STORE | DARR STORE</title>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root { --gold: #b58d4a; --dark: #1a1a1a; --light: #f4f4f4; }
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+body { background-color: #fff; color: var(--dark); transition: 0.3s; }
+.navbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); position: sticky; top: 0; z-index: 1000; }
+.logo-container { display: flex; align-items: center; gap: 15px; }
+.logo-img { height: 60px; }
+.brand-name { font-size: 22px; font-weight: bold; color: var(--dark); letter-spacing: 1px; }
+.nav-actions { display: flex; align-items: center; gap: 15px; }
+.lang-btn { background: var(--dark); color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-size: 14px; font-weight: bold; }
+.cart-wrapper { position: relative; cursor: pointer; border: 1px solid #ddd; padding: 5px 15px; border-radius: 20px; display: flex; align-items: center; gap: 8px; }
+.cart-count { background: var(--gold); color: white; border-radius: 50%; padding: 0 6px; font-size: 12px; }
+.hero { height: 50vh; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1541212911954-4829dfaa4464?q=80&w=2000') center/cover; display: flex; flex-direction: column; align-items: center; justify-content: center; color: white; text-align: center; padding: 20px; }
+.hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+.container { padding: 40px 5%; background: #f9f9f9; }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+.product-card { background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: 0.3s; padding: 15px; text-align: inherit; }
+.product-card:hover { transform: translateY(-10px); }
+.product-img { height: 250px; background: #eee center/cover; border-radius: 8px; margin-bottom: 15px; }
+.price-tag { color: var(--dark); font-weight: bold; font-size: 1.2rem; display: block; margin: 10px 0; }
+.add-btn { background: var(--dark); color: white; border: none; width: 100%; padding: 10px; border-radius: 5px; cursor: pointer; transition: 0.3s; }
+.modal { display: none; position: fixed; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 5000; align-items: center; justify-content: center; overflow-y: auto; }
+.modal-content { background: white; width: 95%; max-width: 550px; border-radius: 15px; position: relative; padding: 30px; text-align: center; }
+.close-modal { position: absolute; top: 15px; right: 20px; font-size: 24px; cursor: pointer; }
+.input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 20px; }
+input, select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 5px; margin-bottom: 10px; text-align: inherit; }
+.payment-box { border: 2px dashed var(--gold); padding: 20px; border-radius: 10px; background: #fffdf9; margin-top: 20px; text-align: inherit; font-size: 14px; }
+.confirm-btn { background: #25d366; color: white; border: none; padding: 15px; width: 100%; border-radius: 5px; margin-top: 20px; font-size: 1.1rem; cursor: pointer; font-weight: bold; }
+#admin-bar { display: none; background: #000; color: #fff; padding: 10px; text-align: center; position: fixed; width: 100%; top: 0; z-index: 9999; }
+button { cursor:pointer; }
+button:hover { opacity: 0.8; }
+</style>
+</head>
+<body>
+
+<div id="admin-bar">لوحة التحكم | DARR2468</div>
+
+<nav class="navbar">
+<div class="logo-container">
+<img src="" alt="DARR Logo" class="logo-img">
+<span class="brand-name">DARR STORE</span>
+</div>
+<div class="nav-actions">
+<button class="lang-btn" onclick="changeLang('ar')">AR</button>
+<button class="lang-btn" onclick="changeLang('en')">EN</button>
+<div class="cart-wrapper" onclick="openCheckout()">
+🛒 <span class="cart-count" id="cart-count">0</span>
+</div>
+</div>
+</nav>
+
+<header class="hero">
+<h1 id="hero-title">إبداع يدوي يُناسب ذوقك</h1>
+<p id="hero-desc">مجموعة مختارة من التحف اليدوية المصنوعة بشغف</p>
+</header>
+
+<div class="container">
+<div class="grid">
+<!-- المنتج 1 -->
+<div class="product-card">
+<div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1581783898377-1c85bf937427?w=500')"></div>
+<h3 data-key="p1_name">فخار هاند ميد كلاسيك</h3>
+<span class="price-tag">450 <span class="curr">ج.م</span></span>
+<button class="add-btn" onclick="addToCart('فخار كلاسيك', 450)" data-key="add_to_cart">إضافة للسلة</button>
+</div>
+<!-- المنتج 2 -->
+<div class="product-card">
+<div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1610701596007-11502861dcfa?w=500')"></div>
+<h3 data-key="p2_name">طقم شموع دار</h3>
+<span class="price-tag">180 <span class="curr">ج.م</span></span>
+<button class="add-btn" onclick="addToCart('طقم شموع', 180)" data-key="add_to_cart">إضافة للسلة</button>
+</div>
+<!-- مثال لإضافة منتجات جديدة -->
+<div class="product-card">
+<div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1607746882042-944635dfe10e?w=500')"></div>
+<h3 data-key="p3_name">فازة زجاجية يدوية</h3>
+<span class="price-tag">300 <span class="curr">ج.م</span></span>
+<button class="add-btn" onclick="addToCart('فازة زجاجية', 300)" data-key="add_to_cart">إضافة للسلة</button>
+</div>
+</div>
+</div>
+
+<!-- Modal السلة -->
+<div id="checkoutModal" class="modal">
+<div class="modal-content">
+<span class="close-modal" onclick="closeCheckout()">&times;</span>
+<h2 style="color:var(--gold)" id="modal-title">ملخص مشترياتك</h2>
+
+<div class="input-group">
+<input type="text" id="custName" placeholder="الاسم الكامل">
+<select id="payMethod" onchange="updateUI()">
+<option value="cod" data-key="opt_cod">الدفع عند الاستلام</option>
+<option value="vodafone" data-key="opt_voda">فودافون كاش</option>
+<option value="instapay" data-key="opt_insta">إنستا باي</option>
+</select>
+<input type="tel" id="custPhone" placeholder="رقم الهاتف">
+<input type="email" id="custEmail" placeholder="البريد الإلكتروني">
+<input type="text" id="custAddress" placeholder="العنوان بالتفصيل">
+</div>
+
+<div class="payment-box">
+<div id="modal-products" style="margin-bottom:10px;"></div>
+<p id="pay-text">طريقة الدفع: <strong data-key="opt_cod">الدفع عند الاستلام</strong></p>
+<div id="receipt-upload" style="display:none; margin-top:10px;">
+<label id="upload-label">ارفع صورة التحويل:</label>
+<input type="file" id="fileInput">
+</div>
+</div>
+
+<div style="margin-top:20px; font-size:1.4rem; font-weight:bold;">
+<span id="total-label">الإجمالي:</span> <span id="total-price">0</span> <span class="curr">ج.م</span>
+</div>
+
+<button class="confirm-btn" onclick="sendToWhatsApp()" id="confirm-btn">إتمام الطلب عبر واتساب</button>
+</div>
+</div>
+
+<script>
+const MY_PHONE = "201009727093"; 
+let cart = [];
+let total = 0;
+
+const translations = {
+ar: { hero_title:"إبداع يدوي يُناسب ذوقك", hero_desc:"مجموعة مختارة من التحف اليدوية المصنوعة بشغف", add_to_cart:"إضافة للسلة", curr:"ج.م", modal_title:"ملخص مشترياتك", total_label:"الإجمالي:", confirm_btn:"إتمام الطلب عبر واتساب", p1_name:"فخار هاند ميد كلاسيك", p2_name:"طقم شموع دار", p3_name:"فازة زجاجية يدوية", opt_cod:"الدفع عند الاستلام", opt_voda:"فودافون كاش", opt_insta:"إنستا باي", upload_label:"ارفع صورة التحويل:"},
+en: { hero_title:"Handcrafted Luxury", hero_desc:"Selected collection of handmade masterpieces", add_to_cart:"Add to Cart", curr:"EGP", modal_title:"Order Summary", total_label:"Total:", confirm_btn:"Complete via WhatsApp", p1_name:"Classic Handmade Pottery", p2_name:"DARR Candle Set", p3_name:"Handmade Glass Vase", opt_cod:"Cash on Delivery", opt_voda:"Vodafone Cash", opt_insta:"InstaPay", upload_label:"Upload Receipt:"}
+};
+
+function changeLang(lang){
+const html=document.getElementById('main-html');html.lang=lang;html.dir=(lang==='ar'?'rtl':'ltr');
+document.getElementById('hero-title').innerText=translations[lang].hero_title;
+document.getElementById('hero-desc').innerText=translations[lang].hero_desc;
+document.getElementById('modal-title').innerText=translations[lang].modal_title;
+document.getElementById('total-label').innerText=translations[lang].total_label;
+document.getElementById('confirm-btn').innerText=translations[lang].confirm_btn;
+document.getElementById('upload-label').innerText=translations[lang].upload_label;
+document.querySelectorAll('.curr').forEach(el=>el.innerText=translations[lang].curr);
+document.querySelectorAll('[data-key]').forEach(el=>{el.innerText=translations[lang][el.getAttribute('data-key')];});
+if(lang==='en'){document.getElementById('custName').placeholder="Full Name";document.getElementById('custPhone').placeholder="Phone Number";document.getElementById('custEmail').placeholder="Email Address";document.getElementById('custAddress').placeholder="Detailed Address";} else {document.getElementById('custName').placeholder="الاسم الكامل";document.getElementById('custPhone').placeholder="رقم الهاتف";document.getElementById('custEmail').placeholder="البريد الإلكتروني";document.getElementById('custAddress').placeholder="العنوان بالتفصيل";}
+}
+
+function updateCartUI(){
+document.getElementById('cart-count').innerText = cart.reduce((sum,p)=>sum+p.quantity,0);
+document.getElementById('total-price').innerText = total;
+const modalList=document.getElementById('modal-products'); modalList.innerHTML='';
+cart.forEach((p,index)=>{
+const itemDiv=document.createElement('div'); itemDiv.style.display='flex'; itemDiv.style.justifyContent='space-between'; itemDiv.style.alignItems='center'; itemDiv.style.margin='5px 0';
+itemDiv.innerHTML=`<span>${p.name} x${p.quantity}</span><span>
+<button onclick="decreaseItem(${index})" style="margin-right:5px">-</button>
+<button onclick="increaseItem(${index})" style="margin-right:5px">+</button>
+<button onclick="removeItem(${index})">×</button>
+</span>`;
+modalList.appendChild(itemDiv);
+});
+}
+
+function addToCart(name,price){
+let item=cart.find(p=>p.name===name); if(item)item.quantity+=1; else cart.push({name:name,price:price,quantity:1}); total+=price; updateCartUI();
+alert(document.getElementById('main-html').lang==='en'?"Added!":"تمت الإضافة!");
+}
+
+function decreaseItem(index){ if(cart[index].quantity>1){ cart[index].quantity-=1; total-=cart[index].price; } else { total-=cart[index].price; cart.splice(index,1); } updateCartUI(); }
+function increaseItem(index){ cart[index].quantity+=1; total+=cart[index].price; updateCartUI(); }
+function removeItem(index){ total-=cart[index].price*cart[index].quantity; cart.splice(index,1); updateCartUI(); }
+
+function openCheckout(){ if(cart.length===0) return alert("السلة فارغة"); document.getElementById('checkoutModal').style.display='flex'; updateCartUI(); }
+function closeCheckout(){ document.getElementById('checkoutModal').style.display='none'; }
+
+function updateUI(){
+const method=document.getElementById('payMethod').value;
+const upload=document.getElementById('receipt-upload');
+const payText=document.getElementById('pay-text');
+const lang=document.getElementById('main-html').lang||'ar';
+if(method==='vodafone'){ payText.innerHTML=(lang==='en'?"Transfer to:":"حول لـ:")+" <strong>010XXXXXXXX</strong>"; upload.style.display='block'; }
+else if(method==='instapay'){ payText.innerHTML=(lang==='en'?"Account":"الحساب")+" <strong>name@instapay</strong>"; upload.style.display='block'; }
+else{ payText.innerHTML=translations[lang].opt_cod; upload.style.display='none'; }
+}
+
+function sendToWhatsApp(){
+const name=document.getElementById('custName').value;
+const phone=document.getElementById('custPhone').value;
+const email=document.getElementById('custEmail').value;
+const address=document.getElementById('custAddress').value;
+const method=document.getElementById('payMethod').value;
+const lang=document.getElementById('main-html').lang;
+if(!name||!phone||!address){ return alert(lang==='en'?"Please fill all required fields!":"يرجى ملء كافة الحقول الأساسية!"); }
+const productsText=cart.map(p=>`${p.name} x${p.quantity}`).join(' + ');
+let paymentText=''; if(method==='vodafone') paymentText=(lang==='en'?"Transfer to":"حول لـ")+" 010XXXXXXXX";
+else if(method==='instapay') paymentText=(lang==='en'?"Account":"الحساب")+" name@instapay";
+else paymentText=translations[lang].opt_cod;
+const message=`*طلب جديد من DARR STORE*%0A--------------------------%0A*الاسم:* ${name}%0A*الهاتف:* ${phone}%0A*الإيميل:* ${email||'غير محدد'}%0A*العنوان:* ${address}%0A--------------------------%0A*المنتجات:* ${productsText}%0A*طريقة الدفع:* ${paymentText}%0A*الإجمالي:* ${total} ${translations[lang].curr}%0A--------------------------`;
+window.open(`https://wa.me/${MY_PHONE}?text=${message}`,'_blank');
+}
+
+function accessAdmin(){ if(prompt("Pass:")==="DARR2468") document.getElementById('admin-bar').style.display='block'; }
+</script>
